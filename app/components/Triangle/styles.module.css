@@ -1,0 +1,21 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.number {
+    width: 24px;
+    height: 24px;
+}
+
+.numberHighlight {
+    color: red;
+    font-weight: 600;
+}
