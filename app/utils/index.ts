@@ -1,0 +1,1 @@
+export { findTriangleMaxPath } from './findTriangleMaxPath';
