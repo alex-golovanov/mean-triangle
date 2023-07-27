@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 type TProps = ReturnType<typeof findTriangleMaxPath> & { data: number[][] };
 
 export const Triangle = (props: TProps): JSX.Element => {
-  const { data, path, values, total } = props;
+  const { data, path, total } = props;
   const [top, ...rows] = data;
   const topRef = useRef<HTMLDivElement | null>(null);
 
@@ -36,10 +36,15 @@ export const Triangle = (props: TProps): JSX.Element => {
           {row.map((number, numberKey) => (
             <div
               key={numberKey}
-              title={top.toString()}
+              title={number.toString()}
               className={clsx(styles.number, {
                 [styles.numberHighlight]: numberKey === path[rowKey],
               })}
+              style={
+                numberKey === path[rowKey]
+                  ? ({ '--animation-order': rowKey } as React.CSSProperties)
+                  : {}
+              }
             >
               {number}
             </div>

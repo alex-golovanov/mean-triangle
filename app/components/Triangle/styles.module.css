@@ -6,6 +6,14 @@
     gap: 4px;
     width: max-content;
     padding: 100px;
+    margin: auto;
+}
+
+.answer {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .row {
@@ -25,14 +33,25 @@
     cursor:help;
 }
 
+
 .numberHighlight {
-    color: red;
-    font-weight: 600;
+    --animation-speed: 200ms;
+
+    animation-name: highlight;
+    animation-duration: var(--animation-speed);
+    animation-delay: calc(var(--animation-order) * var(--animation-speed));
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.answer {
-    height: 80px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+
+@keyframes highlight {
+    0% { 
+        color: rgb(var(--foreground-rgb)); 
+        font-weight: 400; 
+    }
+    100% { 
+        color: red; 
+        font-weight: 600;
+    }
 }
