@@ -1,6 +1,15 @@
 .root  {
     border: 1px dashed rgb(var(--card-border-rgb));
-    padding: 50px;
+
     border-radius: 8px;
     cursor: pointer;
+
+    width: 300px;
+    height: 100px;
+    padding: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }

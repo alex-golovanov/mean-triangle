@@ -22,24 +22,37 @@ export default function App() {
   const showTriangle = triangleProps;
 
   const handleOnLoad = useCallback((text?: string) => {
-    console.log(text);
     if (text) {
       setData(parseTriangleText(text));
     }
   }, []);
 
   const handleReset = () => setData(null);
+  const handleSampleLoad: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
+    e.preventDefault();
+    setData(SAMPLE_DATA);
+  };
 
   return (
     <main className={styles.root}>
       {showTriangle && <Triangle {...triangleProps} />}
       {showTriangle && (
-        <button className={styles.close} onClick={handleReset}>
+        <button
+          className={styles.close}
+          title='Close current solution'
+          onClick={handleReset}
+        >
           ❌
         </button>
       )}
       {showDropZone && (
-        <Dropzone onLoad={handleOnLoad} className={styles.dropzone} />
+        <div className={styles.dropzone}>
+          <Dropzone onLoad={handleOnLoad} />
+          <div>or</div>
+          <a href='#' onClick={handleSampleLoad}>
+            load a sample
+          </a>
+        </div>
       )}
     </main>
   );
