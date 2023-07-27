@@ -1,9 +1,28 @@
 .root {
-  width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  min-width: 100vw;
+}
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: auto;
+.dropzone {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
+
+.close {
+  all: unset;
+  cursor: pointer;
+
+  position: fixed;
+  top: 40px;
+  right: 40px;
+
+  height: 24px;
+  width: 24px;
+  text-align: center;
+  padding: 4px;
+
+  /* border-radius: 999px;
+  border: 1px solid rgb(var(--card-border-rgb)); */
 }

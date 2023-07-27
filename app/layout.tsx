@@ -1,7 +1,6 @@
-import './globals.css';
 import type { Metadata } from 'next';
 import { IBM_Plex_Mono } from 'next/font/google';
-import clsx from 'clsx';
+import './globals.css';
 
 const mono = IBM_Plex_Mono({
   subsets: ['latin'],
