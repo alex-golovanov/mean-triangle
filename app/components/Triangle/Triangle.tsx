@@ -1,21 +1,42 @@
-import styles from './styles.module.css';
+import { useEffect, useRef } from 'react';
 import clsx from 'clsx';
-interface IProps {
-  data: number[][];
-  path: number[];
-  values: number[];
-  total: number;
-}
+import { findTriangleMaxPath } from '@/app/utils';
+import styles from './styles.module.css';
 
-export const Triangle = (props: IProps): JSX.Element => {
-  const { data, path } = props;
+type TProps = ReturnType<typeof findTriangleMaxPath> & { data: number[][] };
+
+export const Triangle = (props: TProps): JSX.Element => {
+  const { data, path, values, total } = props;
+  const [top, ...rows] = data;
+  const topRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (topRef.current) {
+      topRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center',
+      });
+    }
+  }, []);
+
   return (
     <div className={styles.root}>
-      {data.map((row, rowKey) => (
+      <div className={styles.row}>
+        <div
+          ref={topRef}
+          title={top.toString()}
+          className={clsx(styles.number, styles.numberHighlight)}
+        >
+          {top}
+        </div>
+      </div>
+      {rows.map((row, rowKey) => (
         <div key={rowKey} className={styles.row}>
           {row.map((number, numberKey) => (
             <div
               key={numberKey}
+              title={top.toString()}
               className={clsx(styles.number, {
                 [styles.numberHighlight]: numberKey === path[rowKey],
               })}
@@ -25,6 +46,11 @@ export const Triangle = (props: IProps): JSX.Element => {
           ))}
         </div>
       ))}
+
+      <div className={styles.answer}>
+        <span>Max path total is</span>
+        <span className={styles.numberHighlight}>{total}</span>
+      </div>
     </div>
   );
 };
