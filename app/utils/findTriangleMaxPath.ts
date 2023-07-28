@@ -39,7 +39,7 @@ export const findTriangleMaxPath = (triangle: number[][]): IResult => {
         dp[row] ||= [];
         dp[row][col] = {
           total: currentValue + rightChildValue,
-          path: [col, ...dp[row + 1][col + 1].path],
+          path: [row === 0 ? 0 : col + 1, ...dp[row + 1][col + 1].path],
           values: [currentValue, ...dp[row + 1][col + 1].values],
         };
       }
